@@ -23,7 +23,7 @@ module.exports = function(app) {
     }
 
     var bestFriendIndex = 0;
-    var minimumDifference = 40;
+    var minimumDifference = 50;
 
 //Add up the differences to calculate the `totalDifference`.
 //      * Example:
@@ -44,9 +44,8 @@ module.exports = function(app) {
         minimumDifference = totalDifference;
       }
     }
-//ADDING FRIENDS TO THE DATABASE
+//ADDING FRIENDS TO THE ARRAY
     friends.push(user);
-
     res.json(friends[bestFriendIndex]);
   });
 };
