@@ -13,7 +13,8 @@
     <div class="container content">
         <!-- TITLE AND INSTRUCTIONS -->
         <h1>Survey</h1>
-        <p>Instructions: Pick a number for each question based on how strongly you agree with the statement. (1 for srongly disagree, 5 for strongly agree.) Press the submit button to find your match!</p>
+        <p>Instructions: Pick a number for each question based on how strongly you agree with the statement. (1 for
+            srongly disagree, 5 for strongly agree.) Press the submit button to find your match!</p>
         <form>
             <!-- USER INFORMATION -->
             <div class="form-group">
@@ -24,7 +25,7 @@
             </div>
             <!-- QUESTIONS -->
             <div class="form-group">
-                <label for="question1">Question</label>
+                <label for="question1">I like cheese.</label>
                 <select class="form-control" id="question1">
                     <option value="empty"></option>
                     <option value="1">1 (STRONGLY DISAGREE)</option>
@@ -138,8 +139,8 @@
             <button id="submitBtn" type="submit" class="btn btn-success btn-lg">Submit</button>
         </div>
 
-<!-- 7. Once you've found the current user's most compatible friend, display the result as a modal pop-up. -->
-<!-- * The modal should display both the name and picture of the closest match. -->
+        <!-- 7. Once you've found the current user's most compatible friend, display the result as a modal pop-up. -->
+        <!-- * The modal should display both the name and picture of the closest match. -->
         <div id="bestFriendModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -161,7 +162,7 @@
 
     <footer>
         <div class="container">
-            <a href="/api/friends">Discover Friends API</a>
+            <a href="/api/friends">Friends API</a>
             <span>|</span>
             <a href="https://counttalkula666.github.io/FriendFinder/">GitHub Repo</a>
         </div>
@@ -175,6 +176,20 @@
 </html>
 
 <script type="text/javascript">
+    function clearForm() {
+        $('#name').val('');
+        $('#photo').val('');
+        $("#question1").val('');
+        $("#question2").val('');
+        $("#question3").val('');
+        $("#question4").val('');
+        $("#question5").val('');
+        $("#question6").val('');
+        $("#question7").val('');
+        $("#question8").val('');
+        $("#question9").val('');
+        $("#question10").val('');
+    }
 
     $("#submitBtn").on("click", function (event) {
         event.preventDefault();
@@ -205,11 +220,12 @@
                     $("#question10").val()
                 ]
             };
-            //right here we can clear the fields - NOT WORKING
-            var currentURL = window.location.origin;
+          const currentURL = window.location.origin;
+
 
             // Ajax call for receiving response after POST req
             $.post(currentURL + "/api/friends", newUser, function (data) {
+                clearForm();
                 $("#bestFriend").text(data.name);
                 $("#bestFriendPhoto").attr("src", data.photo);
                 $("#bestFriendModal").modal("toggle");
